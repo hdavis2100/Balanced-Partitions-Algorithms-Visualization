@@ -17,34 +17,6 @@ Outputs include per‑iteration **YAML logs**, **PNG** snapshots, and an optiona
 
 ---
 
-## Repository layout
-
-```
-Balanced_Partitions/
-  Balanced_Partitions/
-    kconnect/
-      core/
-        graphio.py        # YAML I/O, catalog graphs (cycles, ladders, torus, hubring, prisms, complete, hypercubes, Platonic solids, Kmxn …)
-        k2_sim.py         # k=2 “extreme‑tree” sweep (iteration + timeline dumps)
-        k2_st.py          # Tarjan st‑numbering and best‑L1 cut selection
-        k3_local.py       # k=3 local frontier moves with per‑iteration logging
-        weights.py        # weight initializers (random zero‑sum, anchor‑signed, binary ±1)
-        proofcheck.py     # tiny helpers (e.g., max |w|)
-      service/
-        main.py           # CLI entry point
-      viz.py              # PNG rendering for k=2 and k=3 (component forests, moved node, attach edge)
-    tools/
-      make_gif.py         # build GIF from iter_###.png frames (alt: tools/makegif.py)
-    webui/
-      app.py              # minimal Flask UI
-      templates/          # index + results pages
-    runs/                 # sample outputs (YAML, PNG, GIF); auto‑populated by CLI/UI
-    requirements.txt
-```
-
-> **Note:** Commands below assume your working directory is `Balanced_Partitions/Balanced_Partitions/` (the folder that contains the `kconnect` package).
-
----
 
 ## Quick start
 

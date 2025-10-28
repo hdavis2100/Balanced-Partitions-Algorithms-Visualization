@@ -115,38 +115,6 @@ anchors: [A, C]     # for k=2; use exactly three nodes for k=3 (e.g., [A, B, C])
 
 > Anchors must be present in `nodes`. For `k=2`, algorithms use the first two anchors; for `k=3`, the first three.
 
----
-
-## Python API examples
-
-```python
-# k=2 sweep (extreme‑tree)
-import networkx as nx
-from kconnect.core.graphio import catalog_graph
-from kconnect.core.weights import default_anchor_equal_zero_sum
-from kconnect.core.k2_sim import balanced_partition_worst
-
-G, _, anchors = catalog_graph(k=2, catalog="k2", graph_id="cycle12")
-w = default_anchor_equal_zero_sum(G, anchors=list(anchors), anchor_sign="negative", seed=7)
-res = balanced_partition_worst(
-    G, w, anchors[0], anchors[1],
-    debug=False, debug_check=False, trace=False,
-    dump_yaml_dir="runs/demo_k2", dump_plots=True
-)
-print("best L1:", res.best_L1, "iterations:", res.iterations, "bound:", res.bound)
-```
-
-```python
-# k=3 local search
-from kconnect.core.graphio import catalog_graph
-from kconnect.core.weights import default_anchor_equal_zero_sum
-from kconnect.core.k3_local import balanced_partition_k3_local
-
-G, _, anchors = catalog_graph(k=3, catalog="k3", graph_id="octahedron")
-w = default_anchor_equal_zero_sum(G, anchors=list(anchors), anchor_sign="negative", seed=7)
-res = balanced_partition_k3_local(G, w, anchors, viz=True, dump_dir="runs/demo_k3", make_gif=True)
-print("best L1:", res.best_L1, "best frame:", res.best_iter)
-```
 
 ---
 
@@ -164,11 +132,7 @@ print("best L1:", res.best_L1, "best frame:", res.best_iter)
 - **`binary` weights disabled in the UI** — requires even `|V|` and that `2 * anchors ≤ |V|` (k=2 uses two anchors; k=3 uses three).  
 - **No `timeline.gif`** — include `--gif` or use `tools/make_gif.py` after producing PNG frames with `--viz`.
 
----
 
-## License
-
-TBD.
 
 ---
 
